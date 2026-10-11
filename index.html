@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/><meta name="theme-color" content="#080c10"/><meta name="description" content="用手势让一朵粒子花在指尖绽放。Three.js 与 MediaPipe 实时交互实验。"/><title>指尖花园 · Fingertip Bloom</title></head>
+<body>
+<div id="app">
+  <canvas id="scene" aria-label="可交互的三维粒子花朵"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <header><a class="brand" href="./"><span class="brand-icon">✳</span><span>指尖花园<small>FINGERTIP BLOOM</small></span></a><span class="edition">INTERACTIVE STUDY <span> / 001</span></span><button id="capture" class="icon-button" title="保存花朵截图" aria-label="保存花朵截图">↗ <span>保存画面</span></button></header>
+  <main>
+    <section class="intro"><div class="eyebrow"><span></span> A LITTLE MAGIC, IN YOUR HANDS</div><h1>让灵感，<br>在指尖<span>绽放。</span></h1><p>一束光，一次挥手，一座微小的花园。<br>张开手掌，让属于你的花朵慢慢盛开。</p><div class="instructions"><span><b>01</b> 握拳 · 花苞</span><span><b>02</b> 张手 · 绽放</span><span><b>03</b> 移动 · 跟随</span></div></section>
+    <div class="flower-label" aria-hidden="true"><span class="line"></span><span>FLORA 001<small>光组成的生命</small></span></div>
+    <aside class="panel" aria-label="花园控制面板">
+      <div class="panel-heading"><span>你的花园</span><span class="tiny">LIVE CANVAS</span></div>
+      <div class="mode"><span id="mode-dot" class="dot"></span><span id="mode-text">鼠标交互模式</span><span id="fps">— FPS</span></div>
+      <button id="camera" class="camera-button"><span>◎</span> 开启手势魔法 <span>↗</span></button>
+      <p class="camera-hint" id="camera-hint">开启摄像头，用手势控制花朵。<br>也可以移动鼠标，按住让花朵闭合。</p>
+      <div id="camera-preview" hidden><video id="video" autoplay playsinline muted></video><canvas id="landmarks"></canvas><span id="tracking-text">正在寻找你的手…</span></div>
+      <div class="divider"></div>
+      <div class="setting-heading"><label>花朵色彩</label><span id="palette-name">暮色鸢尾</span></div>
+      <div class="swatches" role="group" aria-label="花朵色彩"><button class="swatch selected" data-palette="0" aria-label="暮色鸢尾" aria-pressed="true" style="--swatch:linear-gradient(135deg,#b3bbff,#d29dc9)"></button><button class="swatch" data-palette="1" aria-label="玫瑰余晖" aria-pressed="false" style="--swatch:linear-gradient(135deg,#ffacbb,#ed7179)"></button><button class="swatch" data-palette="2" aria-label="薄荷微光" aria-pressed="false" style="--swatch:linear-gradient(135deg,#a5e8ce,#63bdb3)"></button><button class="swatch" data-palette="3" aria-label="琥珀日光" aria-pressed="false" style="--swatch:linear-gradient(135deg,#ffe6b8,#dbad63)"></button></div>
+      <div class="setting-heading"><label for="bloom">绽放程度</label><output id="bloom-value">82%</output></div><input id="bloom" type="range" min="0" max="100" value="82"/>
+      <div class="setting-heading density-heading"><label for="density">粒子密度</label><span>细腻的光</span></div><select id="density"><option value="12000">轻盈 · 12,000</option><option value="24000" selected>细腻 · 24,000</option><option value="40000">丰盈 · 40,000</option></select>
+      <button id="auto" class="auto-button" aria-pressed="false"><span>自动呼吸</span><span class="toggle"></span></button>
+    </aside>
+    <div class="gesture-caption"><span class="orbit-icon">✧</span><span id="gesture-caption">移动鼠标，感受光的流动</span></div>
+  </main>
+  <footer><span>CREATED WITH LIGHT & CURIOSITY</span><span>Three.js <i>×</i> MediaPipe Hands</span><span class="footer-right"><span class="dot"></span> 实时粒子艺术</span></footer>
+  <div id="notice" role="status" aria-live="polite"></div>
+  <div id="fatal" hidden role="alert"><h2>暂时无法绘制花朵</h2><p>请使用支持 WebGL 的浏览器，并开启硬件加速后刷新。</p></div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body></html>
