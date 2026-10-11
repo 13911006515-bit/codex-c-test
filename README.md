@@ -13,6 +13,20 @@
 
 免安装包包含生产网页、本地手势模型、静态 HTTP 服务和按官方 SHA-256 验证的 Node.js Windows 运行时。包内包含使用说明和依赖许可；下载包的校验值位于 `downloads/SHA256SUMS`。网页服务和浏览器交互已验证，Windows 启动文件仍需在真实 Windows 设备执行。
 
+## Mac 双击启动版
+
+[下载 Mac 通用启动包（约 88 MiB）](https://github.com/13911006515-bit/codex-c-test/raw/refs/heads/fingertip-bloom-delivery/downloads/fingertip-bloom-mac.zip)。要求 **macOS 13.5 或更新版本**，同时包含苹果芯片与 Intel 运行时，由启动文件自动选择。
+
+1. 在 Mac 的 Finder 中双击 ZIP，用系统自带的归档实用工具完整解压。
+2. 打开“指尖花园 Mac”文件夹，双击 **启动花园.command**。
+3. 浏览器自动打开后，点击“开启手势魔法”，允许摄像头。保持终端窗口开启；停止时按 Control+C。
+
+首次打开若系统提示无法验证开发者，确认下载来自本仓库后，在“系统设置 → 隐私与安全性”中选择对应项目的“仍要打开”，并按系统提示确认。部分系统版本也支持右键启动文件、选择“打开”。此包没有 Apple 应用公证；启动程序不会关闭系统安全验证或删除隔离属性。
+
+包内含网页、模型和官方 Node.js 运行时，不需要安装依赖。两个运行时均已按官方 SHA-256 验证，并检查了 Mach-O 架构、13.5 系统目标和签名数据存在。云端已验证打包网页与本地服务；Finder 启动、Apple 签名验证、Gatekeeper 和真实摄像头还需 Mac 实机验证。使用最新版 Chrome 或 Edge 可获得更一致的手势体验。
+
+重新打包：先运行 `npm run build`，再在此 Linux 开发环境运行 `python3 scripts/package-mac.py`。脚本下载并验证固定版本的官方运行时，保留可执行权限，生成 ZIP 并更新 `downloads/SHA256SUMS`。
+
 ## 开发环境启动
 
 需要 Node.js 20.19+ 或 22.12+（本环境使用 Node.js 24）。
